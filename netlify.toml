@@ -1,0 +1,48 @@
+[Settings]
+  ID = "1dad2b58-280f-43ab-bbf7-cfba80fc1e9f"
+
+# Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
+
+[build]
+# This is the directory to change to before starting a build. 
+  base    = "/"
+  # NOTE: This is where we will look for package.json/.nvmrc/etc, not root.
+# This is the directory that you are publishing from (relative to root of your repo)
+  publish = "/_site/"
+# This will be your default build command
+  command = "echo 'default context'" 
+
+# Production context: All deploys from the Production branch set in your site's deploy settings will inherit these settings.
+[context.production]
+  command = "jekyll build --config=_config.yml"
+[context.production.environment]
+  ACCESS_TOKEN = "production-access-token"
+
+# Deploy Preview context: All Deploy Previews (https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/)
+# will inherit these settings.
+[context.deploy-preview]
+  command = "jekyll build --config=_config.yml,_config_staging.yml"
+[context.deploy-preview.environment]
+  ACCESS_TOKEN = "deploy-preview-access-token"
+
+# Branch Deploy context: All deploys that are not resulting from a Pull/Merge Request and not from the primary, linked branch will inherit these settings.
+[context.branch-deploy]
+  command = "echo branch"
+[context.branch-deploy.environment]
+  ACCESS_TOKEN = "branch-deploy-access-token"
+
+# Specific branch context: Deploys from this branch
+# will take these settings and override their
+# current ones.
+[context.staging] # 'staging' is a branch name
+  base = "staging"
+  command = "jekyll build --config=_config.yml,_config_staging.yml"
+[context.branch-deploy.environment]
+  ACCESS_TOKEN = "staging-access-token"
+
+# A basic redirects rule
+[[redirects]]
+  from = "/redirect"
+  to = "/redirected"
+  status = 301
+  force = false
