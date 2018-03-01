@@ -37,7 +37,7 @@
 [context.staging] # 'staging' is a branch name
   base = "staging"
   command = "jekyll build --config=_config.yml,_config_staging.yml"
-[context.branch-deploy.environment]
+[context.staging.environment]
   ACCESS_TOKEN = "staging-access-token"
 
 # A basic redirects rule
