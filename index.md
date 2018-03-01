@@ -5,6 +5,8 @@
 layout: home
 ---
 
+[[ STAGING ]]
+
 # What is the environment variable?
 
 ## Site access token: {{ site.access_token }}
