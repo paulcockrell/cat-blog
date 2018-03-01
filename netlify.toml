@@ -35,7 +35,6 @@
 # will take these settings and override their
 # current ones.
 [context.staging] # 'staging' is a branch name
-  base = "staging"
   command = "jekyll build --config=_config.yml,_config_staging.yml"
 [context.staging.environment]
   ACCESS_TOKEN = "staging-access-token"
